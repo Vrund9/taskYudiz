@@ -1,0 +1,223 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.center-card-register {
+  margin: 100px 50px 100px 400px;
+  width: 42%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin: 5px 0 22px 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+  width: 90%;
+  padding: 10px;
+  margin: 5px 0 22px 10px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.registerbtn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 10;
+}
+
+.center-card-login {
+  margin: 100px 50px 100px 400px;
+  width: 42%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.loginbtn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.loginbtn:hover {
+  opacity: 10;
+}
+
+
+
+/*home.html page design*/
+.homebody {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.topbar {
+  width: 100%;
+  background: dodgerblue;
+  height: 50px;
+  display: flex;
+}
+
+.topbar > div {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.logout {
+  background-color: darkblue;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.logout:hover {
+  opacity: 10;
+}
+
+.MainPart {
+  width: 100%;
+  height: 530px;
+  display: flex;
+}
+
+
+.LeftPart{
+  width: 200px;
+  height: 530px;
+  border: darkcyan 1px solid;
+}
+
+.MiddlePart{
+  width: 900px;
+  height: 530px;
+  border: darkcyan 1px solid;
+  padding: 20px;
+}
+
+.RightPart{
+  width: 270px;
+  height: 530px;
+  border: darkcyan 1px solid;
+}
+
+.footer{
+  width: 100%;
+  background: darkcyan;
+  height: 45px;
+}
+
+
+.weather-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding:20px;
+  font-size: large;
+  text-align: center;
+}
+
+.weather-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.addbtn{
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.addbtn:hover {
+  opacity: 10;
+}
+
+.dltbtn{
+  background-color: red;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.dltbtn:hover {
+  opacity: 10;
+}
+
+.combtn{
+  background-color: green;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.combtn:hover {
+  opacity: 10;
+}
+
+table{
+  margin:10px;
+  
+}
+
+tr{
+  padding:10px;
+}
+
+td{
+  padding:10px;
+}
+
+.profile{
+  background-color: green;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+  border-radius: 100%;
+}
+
+.profile:hover {
+  opacity: 10;
+}
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Work</title>
+</head>
+
+<body>
+    <section>
+        <div class="center-card-register">
+            <form onsubmit="register(event);">
+                <div class="container">
+                    <table>
+                        <tr>
+                            <th colspan="2">
+                                <h1>Registration Form</h1>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label><b>Name</b></label>
+                                <input type="text" placeholder="Enter Name" name="fname" id="fname" required>
+                            </th>
+                            <th>
+                                <label><b>Email</b></label>
+                                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label><b>Mobile</b></label>
+                                <input type="text" placeholder="Enter Mobile Number" name="mobile" id="mobile" required>
+                            </th>
+                            <th>
+                                <label><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label><b>Gender</b></label>
+                                <select name="gender" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </th>
+                            <th>
+                                <label><b>D.O.B</b></label>
+                                <input type="date" placeholder="Enter Name" name="dob" id="dob" required>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <button type="submit" class="registerbtn">Register</button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                <span><a href="#" style="padding-left: 110px;" onclick="RegisterToLogin()">Already
+                                        User!!! Login </a></span>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- //Login Card -->
+        <div class="center-card-login" hidden>
+            <form onsubmit="login(event);">
+                <div class="container">
+                    <table>
+                        <tr>
+                            <th colspan="2">
+                                <h1>Login Form</h1>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label><b>Email</b></label>
+                                <input type="text" placeholder="Enter Email" name="Lemail" id="Lemail" required>
+                            </th>
+                            <th>
+                                <label><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="Lpsw" id="Lpsw" required>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <button type="submit" class="loginbtn">Login</button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+                                <span><a href="#" style="padding-left: 110px;" onclick="LoginToRegister()">New User!!!
+                                        Register Now </a></span>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+<script>
+    function RegisterToLogin() {
+        document.querySelector('.center-card-register').style.display = 'none';
+        document.querySelector('.center-card-login').style.display = 'block';
+    }
+
+    function LoginToRegister() {
+        document.querySelector('.center-card-register').style.display = 'block';
+        document.querySelector('.center-card-login').style.display = 'none';
+    }
+
+    const register = e => {
+        let formData = {
+            name: document.getElementById('fname').value,
+            email: document.getElementById('email').value,
+            mobile: document.getElementById('mobile').value,
+            psw: document.getElementById('psw').value,
+            gender: document.getElementById('gender').value,
+            dob: document.getElementById('dob').value
+        }
+
+        localStorage.setItem(localStorage.length, JSON.stringify(formData));
+        //console.log(localStorage.length);
+        e.preventDefault();
+        document.querySelector('.center-card-register').style.display = 'none';
+        document.querySelector('.center-card-login').style.display = 'block';
+
+
+    }
+
+    const login = e => {
+        let email = document.getElementById('Lemail').value
+        let password = document.getElementById('Lpsw').value
+
+        for (let i = 0; i < localStorage.length; i++) {
+            var key = JSON.parse(localStorage.getItem(i));
+            if (key.email === email && key.psw === password) {
+                let logData = {
+                        email: key.email,
+                        name: key.name,
+                }
+                sessionStorage.setItem('Login',JSON.stringify(logData))
+                e.preventDefault();
+                window.location = "home.html";
+            }
+            else {
+                e.preventDefault();
+                console.log("PLease try again!!!!");
+            }
+        }
+
+    }
+</script>
+
+</html>
