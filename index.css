@@ -92,6 +92,7 @@ select {
   cursor: pointer;
   text-align: center;
   opacity: 0.9;
+  
 }
 
 .logout:hover {
@@ -221,3 +222,19 @@ td{
   opacity: 10;
 }
 
+
+.updatebtn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin: 0 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.updatebtn:hover {
+  opacity: 10;
+}

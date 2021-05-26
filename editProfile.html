@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body onload="authenticate()">
+    <section>
+        <form onsubmit="update()">
+            <div class="container">
+                <table>
+                    <tr>
+                        <th colspan="2">
+                            <h1>Edit Profile</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label><b>Name</b></label>
+                            <input type="text" placeholder="Enter Name" name="fname" id="fname" required=""
+                            pattern="[A-Za-z]{1,}" title="First name should in letters">
+                        </th>
+                        <th>
+                            <label><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" id="email" required=""
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            title="Please follow the email format">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label><b>Mobile</b></label>
+                            <input type="text" placeholder="Enter Mobile Number" name="mobile" id="mobile" required=""
+                            pattern="[0-9]{10}"
+                            title="Mobile number only in digits and it should be 10 digits">
+                        </th>
+                        <th>
+                            <label><b>password</b></label>
+                            <input type="text" placeholder="Enter Password" name="password" id="password" required=""
+                            pattern="[a-zA-Z0-9!@#$%^*()]{8,}" title="Min 8 character required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <button type="submit" class="updatebtn">Update</button>
+                            <button type="button" class="updatebtn" onclick="window.location = 'home.html'">Back to home
+                                page</button>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+        </form>
+    </section>
+</body>
+
+<script>
+    function authenticate() {
+        if (sessionStorage.getItem('Login') == null) {
+            alert("Please First login!!!");
+            window.location = "index.html";
+        }
+    }
+
+
+    let fname = document.getElementById('fname');
+    let nemail = document.getElementById('email');
+    let mobile = document.getElementById('mobile');
+
+    var login = JSON.parse(sessionStorage.getItem('Login'));
+    var email = login.email;
+
+    for (let i = 0; i < localStorage.length; i++) {
+        var key = JSON.parse(localStorage.getItem(i))
+
+        if (key.email === email) {
+            fname.value = key.name;
+            nemail.value = key.email;
+            mobile.value = key.mobile;
+            password.value = key.psw;
+        }
+    }
+
+    let emails = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        var key = JSON.parse(localStorage.getItem(i))
+        if (key.email == email) {
+
+        } else {
+            emails.push(key.email);
+        }
+
+    }
+    console.log(emails);
+
+    function update() {
+        var login = JSON.parse(sessionStorage.getItem('Login'));
+        var email = login.email;
+
+
+
+        for (let i = 0; i < localStorage.length; i++) {
+            var key = JSON.parse(localStorage.getItem(i))
+
+            if (key.email === email) {
+                key.name = fname.value;
+                key.email = nemail.value;
+                key.mobile = mobile.value;
+                key.psw = password.value;
+                let logData = {
+                    email: key.email,
+                    name: key.name
+                }
+                if (emails.includes(key.email)) {
+                    alert("Email id already available. Please try again!!!")
+                }
+                else {
+                    localStorage.setItem(i, JSON.stringify(key));
+                    sessionStorage.setItem('Login', JSON.stringify(logData));
+                }
+
+            }
+        }
+    }
+</script>
+
+</html>

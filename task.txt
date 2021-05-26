@@ -9,22 +9,16 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="homebody" onload="authenticate()">
+<body class="homebody">
     <div class="topbar">
-        <div style="width: 78%;"></div>
+        <div style="width: 88%;"></div>
 
         <div><button class="profile"><span id="user"></span></button></div>
-        <div><a href="editProfile.html">Edit Profile</a></div>
-        <!-- <div><a href="changepassword.html">Change Password</a></div> -->
         <div><button class="logout" onclick="logout();">Log Out</button></div>
     </div>
     <div class="MainPart">
         <div class="LeftPart">
-            <!-- password checker:
-            <input type="text" id="psword">
-            <br>
-            <button onclick="encryption(document.getElementById('psword').value)">Check</button>
-            <lable id="output"></lable> -->
+
         </div>
         <!-- To-do list -->
         <div class="MiddlePart">
@@ -33,7 +27,11 @@
             <input type="hidden" id="saveindex">
             <button class="addbtn" onclick="addtask();" id="add">Add Task</button>
             <button class="addbtn" style="display: none;" id="save">Save Task</button>
-            <!-- <button class="dltbtn" id="deleteall">Delete All</button><br> -->
+            <button class="dltbtn" id="deleteall">Delete All</button><br>
+            <table style="border: darkslategray 1px solid;" id="taskTable">
+            </table>
+            <table style="border: darkslategray 1px solid;" id="CtaskTable">
+            </table>
             <table style="border: darkslategray 1px solid;" id="NewtaskTable">
             </table>
             <table style="border: darkslategray 1px solid;" id="NewCtaskTable">
@@ -64,51 +62,16 @@
         <div></div>
     </div>
     <script>
-        // function encryption(password)
-        // {
-        //     alert("in encrypt");
-        //     var newPass="";
-        //     for(let i=0;i<password.length;i++)
-        //     {
-        //         newPass = newPass + " " + password.charCodeAt(i);
-        //     }
-        //     //console.log("value is :"+newPass);
-        //     var output = document.getElementById('output');
-        //     output.innerHTML = newPass;
-        // }
-
-        // function decryption(password)
-        // {
-        //     alert("in decrypt");
-        //     var decodePass = "";
-        //     for()
-        //     decodePass = String.fromCharCode(password);
-        //     var output = document.getElementById('output');
-        //     output.innerHTML = decodePass;
-        // }
-
-
-
-        function authenticate(){
-            if(sessionStorage.getItem('Login') == null)
-            {
-                alert("Please First login!!!");
-                window.location = "index.html";
-            }
-        }
-
-
         let login = JSON.parse(sessionStorage.getItem('Login'));
         let name = login.name;
         document.getElementById('user').innerHTML = name;
         showFunction();
-        CompleteTaskShow();
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((myLoc) => {
                 const lat = myLoc.coords.latitude;
                 const lng = myLoc.coords.longitude;
-                //console.log(lat, lng);
+                console.log(lat, lng);
 
 
                 var weatherData = document.querySelector(".weatherName");
@@ -172,9 +135,26 @@
         const addtask = (e) => {
 
             var txtData = document.getElementById('tskData').value;
+            // if (txtData.trim() != 0) {
+            //     let localStorageValue = localStorage.getItem("taskStorage");
+            //     if (localStorageValue == null) {
+            //         task = [];
+            //     }
+            //     else {
+            //         task = JSON.parse(localStorageValue);
+            //     }
+            //     task.push(txtData);
+            //     localStorage.setItem("taskStorage", JSON.stringify(task));
+            // }
 
+
+
+            //For add some task in personal array
+            //alert(txtData);
             if (txtData.trim() != 0) {
-
+                //store the data in the perfect key 
+                //get the data from session storage 
+                //var txtData = document.getElementById('tskData').value;
                 var login = JSON.parse(sessionStorage.getItem('Login'));
                 var email = login.email;
                 for (let i = 0; i < localStorage.length; i++) {
@@ -192,6 +172,27 @@
 
 
         function showFunction() {
+            // let localStorageValue = localStorage.getItem("taskStorage");
+            // if (localStorageValue == null) {
+            //     task = [];
+            // }
+            // else {
+            //     task = JSON.parse(localStorageValue);
+            // }
+            // let html = '';
+            // let addtable = document.getElementById("taskTable");
+            // task.forEach((item, index) => {
+            //     html += `<tr>
+            //         <td>${index + 1}</td>
+            //         <td>${item}</td>
+            //         <td><button class="addbtn" onclick="editTask(${index});">Edit</button></td>
+            //         <td><button class="dltbtn" onclick="deleteTask(${index});">delete</button></td>
+            //         <td><button class="combtn" onclick="CompleteTask(${index});">Complete</button></td>
+            //     </tr>`;
+            // });
+
+            // addtable.innerHTML = html;
+            //let Newtask = [];
 
             var login = JSON.parse(sessionStorage.getItem('Login'));
             var email = login.email;
@@ -199,6 +200,9 @@
                 var key = JSON.parse(localStorage.getItem(i))
 
                 if (key.email === email) {
+                    //alert("hello");
+                    //Newtask = key.task;
+                    console.log(key.task);
                     let NewHTML = '';
                     let addNewtable = document.getElementById("NewtaskTable");
                     key.task.forEach((item, index) => {
@@ -218,26 +222,25 @@
         }
 
         function CompleteTaskShow() {
-
-            var login = JSON.parse(sessionStorage.getItem('Login'));
-            var email = login.email;
-            for (let i = 0; i < localStorage.length; i++) {
-                var key = JSON.parse(localStorage.getItem(i))
-
-                if (key.email === email) {
-
-                    let NewHTML = '';
-                    let addNewtable = document.getElementById("NewCtaskTable");
-                    key.complete.forEach((item, index) => {
-                        NewHTML += `<tr>
+            let taskCompleteStorage = localStorage.getItem("taskCompleteStorage");
+            if (taskCompleteStorage == null) {
+                complete = [];
+            }
+            else {
+                complete = JSON.parse(taskCompleteStorage);
+            }
+            let html = '';
+            let addtable = document.getElementById("CtaskTable");
+            complete.forEach((item, index) => {
+                html += `<tr>
                     <td>${index + 1}</td>
                     <td>${item}</td>
-                    <td><button class="dltbtn" onclick="deleteCTask(${index});">delete</button></td>
                 </tr>`;
-                    })
-                    addNewtable.innerHTML = NewHTML;
-                }
-            }
+            });
+
+            addtable.innerHTML = html;
+
+
 
         }
 
@@ -249,54 +252,43 @@
             let btnAdd = document.getElementById('add');
             let btnSave = document.getElementById('save');
 
+            let localStorageValue = localStorage.getItem("taskStorage");
+            let task = JSON.parse(localStorageValue);
+            saveindex.value = index;
+            //console.log(task);
+            tskData.value = task[index];
 
-            var login = JSON.parse(sessionStorage.getItem('Login'));
-            var email = login.email;
-            for (let i = 0; i < localStorage.length; i++) {
-                var key = JSON.parse(localStorage.getItem(i))
+            btnAdd.style.display = "none";
+            btnSave.style.display = "block";
 
-                if (key.email === email) {
-
-                    saveindex.value = index;
-                    tskData.value = key.task[index];
-
-                    btnAdd.style.display = "none";
-                    btnSave.style.display = "block";
-
-                }
-            }
-
+            localStorage.setItem(index, tskData);
         }
 
         let btnAdd = document.getElementById('add');
         let btnSave = document.getElementById('save');
         let saveBtn = document.getElementById('save');
-
         saveBtn.addEventListener("click", function () {
-
+            let localStorageValue = localStorage.getItem("taskStorage");
+            let task = JSON.parse(localStorageValue);
             let saveIndex = document.getElementById('saveindex').value;
 
-            var login = JSON.parse(sessionStorage.getItem('Login'));
-            var email = login.email;
-            for (let i = 0; i < localStorage.length; i++) {
-                var key = JSON.parse(localStorage.getItem(i))
-
-                if (key.email === email) {
-
-                    key.task[saveIndex] = tskData.value;
-
-                    localStorage.setItem(i, JSON.stringify(key));
-                    btnSave.style.display = "none";
-                    btnAdd.style.display = "block";
-                }
-            }
-
+            task[saveIndex] = tskData.value;
+            localStorage.setItem("taskStorage", JSON.stringify(task));
+            btnSave.style.display = "none";
+            btnAdd.style.display = "block";
             tskData.value = "";
             showFunction();
 
         })
 
         function deleteTask(index) {
+            // let localStorageValue = localStorage.getItem("taskStorage");
+            // let task = JSON.parse(localStorageValue);
+
+            // task.splice(index, 1);
+            // localStorage.setItem("taskStorage", JSON.stringify(task));
+
+
             var login = JSON.parse(sessionStorage.getItem('Login'));
             var email = login.email;
             for (let i = 0; i < localStorage.length; i++) {
@@ -307,49 +299,47 @@
                     localStorage.setItem(i, JSON.stringify(key));
                 }
             }
+
             showFunction();
         }
 
-        function deleteCTask(index){
-            var login = JSON.parse(sessionStorage.getItem('Login'));
-            var email = login.email;
-            for (let i = 0; i < localStorage.length; i++) {
-                var key = JSON.parse(localStorage.getItem(i))
 
-                if (key.email === email) {
-                    key.complete.splice(index, 1);
-                    localStorage.setItem(i, JSON.stringify(key));
-                }
-            }
-            CompleteTaskShow();
-        }
+        let deleteAll = document.getElementById('deleteall');
 
-        // let deleteAll = document.getElementById('deleteall');
-
-        // deleteAll.addEventListener("click", function () {
-        //     let btnAdd = document.getElementById('add');
-        //     let btnSave = document.getElementById('save');
-
-        //     var login = JSON.parse(sessionStorage.getItem('Login'));
-        //     var email = login.email;
-        //     for (let i = 0; i < localStorage.length; i++) {
-        //         var key = JSON.parse(localStorage.getItem(i))
-
-        //         if (key.email === email) {
-        //             key.task = [];
-        //             key.complete = [];
-
-        //             localStorage.setItem(i, JSON.stringify(key));
-        //             btnSave.style.display = "none";
-        //             btnAdd.style.display = "block";
-        //         }
-        //     }
-        //     showFunction();
-        //     CompleteTaskShow();
-        // })
+        deleteAll.addEventListener("click", function () {
+            let localStorageValue = localStorage.getItem("taskStorage");
+            let task = JSON.parse(localStorageValue);
+            task = [];
+            let btnAdd = document.getElementById('add');
+            let btnSave = document.getElementById('save');
+            btnSave.style.display = "none";
+            btnAdd.style.display = "block";
+            localStorage.setItem("taskStorage", JSON.stringify(task));
+            showFunction();
+        })
 
 
         function CompleteTask(index) {
+            //alert("hello");
+            let taskCompleteStorage = localStorage.getItem("taskCompleteStorage");
+            //console.log(taskCompleteStorage);
+            if (taskCompleteStorage == null) {
+                //alert("h");
+                complete = [];
+            }
+            else {
+                //console.log("here");
+                complete = JSON.parse(taskCompleteStorage);
+            }
+            let localStorageValue = localStorage.getItem("taskStorage");
+            let task = JSON.parse(localStorageValue);
+
+            complete.push(task[index]);
+            localStorage.setItem("taskCompleteStorage", JSON.stringify(complete));
+
+            task.splice(index, 1);
+            localStorage.setItem("taskStorage", JSON.stringify(task));
+
 
             var login = JSON.parse(sessionStorage.getItem('Login'));
             var email = login.email;
@@ -358,16 +348,19 @@
 
                 if (key.email === email) {
 
-                    key.complete.push(key.task[index]);
+                    key.complete.push(task[index]);
                     localStorage.setItem(i, JSON.stringify(key));
 
                     key.task.splice(index, 1);
                     localStorage.setItem(i, JSON.stringify(key));
+
                 }
             }
 
             showFunction();
             CompleteTaskShow();
+
+
         }
 
         function logout() {
