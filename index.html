@@ -9,11 +9,11 @@
     <title>Work</title>
 </head>
 
-<body onload="authenticate()">
+<body onload="authenticate()" style="background-image:url(login.jpg)">
     <section>
         <div class="center-card-register">
             <form onsubmit="register(event);">
-                <div class="container">
+                <div class="container" style="background: #FFF;">
                     <table>
                         <tr>
                             <th colspan="2">
@@ -81,7 +81,7 @@
         <!-- //Login Card -->
         <div class="center-card-login" hidden>
             <form onsubmit="login(event);">
-                <div class="container">
+                <div class="container" style="background: #FFF;">
                     <table>
                         <tr>
                             <th colspan="2">
@@ -108,8 +108,8 @@
 
                             </th>
                             <th>
-                                <span><a href="#" style="padding-left: 110px;" onclick="LoginToRegister()">New User!!!
-                                        Register Now </a></span>
+                                <span><a href="#" style="padding-left: 110px;" onclick="LoginToRegister()">New User!
+                                        Singup</a></span>
                             </th>
                         </tr>
                     </table>
@@ -120,15 +120,36 @@
 </body>
 
 <script>
-    // function encryption(password)
-    // {
-    //     var newPass;
-    //     for(let i=0;i<password.length;i++)
-    //     {
-    //         newPass += password.charAt(i);
-    //     }
-    //     console.log(newPass);
-    // }
+        function encryption(password)
+        {
+            //alert("in encrypt");
+            var newPass="";
+            var newPassWithoutSpace="";
+            for(let i=0;i<password.length;i++)
+            {
+                newPass = newPass + "@#$" + password.charCodeAt(i);
+                //newPassWithoutSpace += password.charCodeAt(i);
+            }
+            //console.log("value is :"+newPass);
+            ///var output = document.getElementById('output');
+            //output.innerHTML = newPass;
+            //output.innerHTML = newPassWithoutSpace;
+            return newPass;
+        }
+
+        // function decryption(password)
+        // {
+        //     //alert("in decrypt");
+        //     var dPass="";
+        //     const decodePass = password.split("@#$");
+        //     for(let i=0;i<decodePass.length;i++)
+        //     {
+        //         dPass = dPass+String.fromCharCode(decodePass[i]);
+        //     }
+            
+        //     var output = document.getElementById('Doutput');
+        //     output.innerHTML = dPass;
+        // } 
     
     
 
@@ -161,11 +182,11 @@
             name: document.getElementById('fname').value,
             email: document.getElementById('email').value,
             mobile: document.getElementById('mobile').value,
-            psw: document.getElementById('psw').value,
+            psw: encryption(document.getElementById('psw').value),
             gender: document.getElementById('gender').value,
             dob: document.getElementById('dob').value,
             task: task,
-            complete: complete
+            complete: complete  
         }
 
         if (localStorage.getItem(0) != null) {
@@ -232,7 +253,7 @@
 
     const login = e => {
         let email = document.getElementById('Lemail').value
-        let password = document.getElementById('Lpsw').value
+        let password = encryption(document.getElementById('Lpsw').value)
         let emails = [], passwords = [];
         for (let i = 0; i < localStorage.length; i++) {
             var key = JSON.parse(localStorage.getItem(i));

@@ -75,6 +75,7 @@ select {
   background: dodgerblue;
   height: 50px;
   display: flex;
+  border: darkslateblue 1px solid;
 }
 
 .topbar > div {
@@ -82,7 +83,7 @@ select {
   font-size: 20px;
 }
 
-.logout {
+/* .logout {
   background-color: darkblue;
   color: white;
   padding: 12px 16px;
@@ -93,10 +94,35 @@ select {
   text-align: center;
   opacity: 0.9;
   
+} */
+.logout {
+  background-color: darkblue; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+/* .logout:hover {
+  opacity: 10;
+} */
+
+.logout {
+  background-color: white; 
+  color: black; 
+  border: 2px solid darkblue;
+  border-radius: 10%;
 }
 
 .logout:hover {
-  opacity: 10;
+  background-color: darkblue;
+  color: white;
 }
 
 .MainPart {
@@ -107,22 +133,22 @@ select {
 
 
 .LeftPart{
-  width: 200px;
+  width: 300px;
   height: 530px;
-  border: darkcyan 1px solid;
+  
 }
 
 .MiddlePart{
-  width: 900px;
+  width: 850px;
   height: 530px;
-  border: darkcyan 1px solid;
+  
   padding: 20px;
 }
 
 .RightPart{
-  width: 270px;
+  width: 250px;
   height: 530px;
-  border: darkcyan 1px solid;
+  
 }
 
 .footer{
@@ -237,4 +263,12 @@ td{
 
 .updatebtn:hover {
   opacity: 10;
+}
+
+
+.container_updateprofile{
+  margin: 100px 50px 100px 400px;
+  width: 42%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
 }

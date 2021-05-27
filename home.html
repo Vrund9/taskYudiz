@@ -11,10 +11,13 @@
 
 <body class="homebody" onload="authenticate()">
     <div class="topbar">
-        <div style="width: 78%;"></div>
+        <div style="width: 81%;color: white;">
+            <div style="margin-top: 10px;">
+                <span>Current Time is:  &nbsp&nbsp</span><span id="time"></span>
+            </div>
 
-        <div><button class="profile"><span id="user"></span></button></div>
-        <div><a href="editProfile.html">Edit Profile</a></div>
+        </div>
+        <div style="font-size: 15px;padding-top: 10px;"><a href="editProfile.html" style="color: white;"><span id="user" ></span>'s Profile</a></div>
         <!-- <div><a href="changepassword.html">Change Password</a></div> -->
         <div><button class="logout" onclick="logout();">Log Out</button></div>
     </div>
@@ -23,23 +26,31 @@
             <!-- password checker:
             <input type="text" id="psword">
             <br>
-            <button onclick="encryption(document.getElementById('psword').value)">Check</button>
-            <lable id="output"></lable> -->
+            <button onclick="encryption(document.getElementById('psword').value)">encrypt</button><br><br>
+            <button onclick="decryption(document.getElementById('psword').value)">decrypt</button><br><br>
+            <lable id="output">encrypt output : </lable><br><br>
+            <lable id="Doutput">decrypt output : </lable> -->
+            <br><br>
+            <span style="padding-left: 50px;">Complete Task</span>
+            <br><br>
+            <table  id="NewCtaskTable" class="weather-card">
+            </table>
         </div>
         <!-- To-do list -->
-        <div class="MiddlePart">
-            <h5>To-do List</h5>
+        <div class="MiddlePart" style="overflow: auto;">
+            <br>
+            <span style="padding-left: 10px;">To-do List</span><br><br>
             <input type="text" id="tskData" placeholder="Enter your task" style="width: 30% !important;">
             <input type="hidden" id="saveindex">
-            <button class="addbtn" onclick="addtask();" id="add">Add Task</button>
-            <button class="addbtn" style="display: none;" id="save">Save Task</button>
+            <button class="addbtn" onclick="addtask();" id="add">+</button><button class="addbtn" style="display: none;" id="save">Save Task</button>
+            
             <!-- <button class="dltbtn" id="deleteall">Delete All</button><br> -->
-            <table style="border: darkslategray 1px solid;" id="NewtaskTable">
+            <table id="NewtaskTable" class="weather-card">
             </table>
-            <table style="border: darkslategray 1px solid;" id="NewCtaskTable">
-            </table>
+            
         </div>
         <div class="RightPart">
+            <br>
             <div>
                 <div class="weather-card">
                     <span style="color: darkorchid;">Weather Card</span><br>
@@ -49,13 +60,10 @@
                     <span class="weatherDesc"></span>
                 </div>
                 <br>
-                <div id="imgPut">
+                <div id="imgPut" class="weather-card" >
                     <img id="gif" height="150px" width="150px">
                 </div>
                 <br>
-                <div>
-                    <span>Time is:</span><span id="time"></span>
-                </div>
             </div>
         </div>
     </div>
@@ -68,35 +76,47 @@
         // {
         //     alert("in encrypt");
         //     var newPass="";
+        //     var newPassWithoutSpace="";
         //     for(let i=0;i<password.length;i++)
         //     {
         //         newPass = newPass + " " + password.charCodeAt(i);
+        //         newPassWithoutSpace += password.charCodeAt(i);
         //     }
         //     //console.log("value is :"+newPass);
         //     var output = document.getElementById('output');
-        //     output.innerHTML = newPass;
+        //     //output.innerHTML = newPass;
+        //     output.innerHTML = newPassWithoutSpace;
+
         // }
 
         // function decryption(password)
         // {
         //     alert("in decrypt");
-        //     var decodePass = "";
-        //     for()
-        //     decodePass = String.fromCharCode(password);
-        //     var output = document.getElementById('output');
-        //     output.innerHTML = decodePass;
-        // }
+        //     var dPass="";
+        //     const decodePass = password.split(" ");
+        //     for(let i=0;i<decodePass.length;i++)
+        //     {
+        //         dPass = dPass+String.fromCharCode(decodePass[i]);
+        //     }
+
+        //     var output = document.getElementById('Doutput');
+        //     output.innerHTML = dPass;
+        // }   
 
 
 
-        function authenticate(){
-            if(sessionStorage.getItem('Login') == null)
-            {
+        function authenticate() {
+            if (sessionStorage.getItem('Login') == null) {
                 alert("Please First login!!!");
                 window.location = "index.html";
             }
         }
 
+        setInterval(function () {
+            var today = new Date();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            document.getElementById('time').innerHTML = time;
+        }, 1000);
 
         let login = JSON.parse(sessionStorage.getItem('Login'));
         let name = login.name;
@@ -162,11 +182,7 @@
 
 
 
-        setInterval(function () {
-            var today = new Date();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            document.getElementById('time').innerHTML = time;
-        }, 1000);
+
 
 
         const addtask = (e) => {
@@ -310,7 +326,7 @@
             showFunction();
         }
 
-        function deleteCTask(index){
+        function deleteCTask(index) {
             var login = JSON.parse(sessionStorage.getItem('Login'));
             var email = login.email;
             for (let i = 0; i < localStorage.length; i++) {

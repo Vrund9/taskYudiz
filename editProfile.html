@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body onload="authenticate()">
+<body onload="authenticate()" style="background-image: url(login.jpg);">
     <section>
         <form onsubmit="update()">
-            <div class="container">
+            <div class="container_updateprofile" >
                 <table>
                     <tr>
                         <th colspan="2">
@@ -23,26 +23,24 @@
                         <th>
                             <label><b>Name</b></label>
                             <input type="text" placeholder="Enter Name" name="fname" id="fname" required=""
-                            pattern="[A-Za-z]{1,}" title="First name should in letters">
+                                pattern="[A-Za-z]{1,}" title="First name should in letters">
                         </th>
                         <th>
                             <label><b>Email</b></label>
                             <input type="text" placeholder="Enter Email" name="email" id="email" required=""
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                            title="Please follow the email format">
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please follow the email format">
                         </th>
                     </tr>
                     <tr>
                         <th>
                             <label><b>Mobile</b></label>
                             <input type="text" placeholder="Enter Mobile Number" name="mobile" id="mobile" required=""
-                            pattern="[0-9]{10}"
-                            title="Mobile number only in digits and it should be 10 digits">
+                                pattern="[0-9]{10}" title="Mobile number only in digits and it should be 10 digits">
                         </th>
                         <th>
                             <label><b>password</b></label>
                             <input type="text" placeholder="Enter Password" name="password" id="password" required=""
-                            pattern="[a-zA-Z0-9!@#$%^*()]{8,}" title="Min 8 character required">
+                                pattern="[a-zA-Z0-9!@#$%^*()]{8,}" title="Min 8 character required">
                         </th>
                     </tr>
                     <tr>
@@ -60,6 +58,34 @@
 </body>
 
 <script>
+    function encryption(password) {
+        //alert("in encrypt");
+        var newPass = "";
+        var newPassWithoutSpace = "";
+        for (let i = 0; i < password.length; i++) {
+            newPass = newPass + "@#$" + password.charCodeAt(i);
+            //newPassWithoutSpace += password.charCodeAt(i);
+        }
+        //console.log("value is :"+newPass);
+        ///var output = document.getElementById('output');
+        //output.innerHTML = newPass;
+        //output.innerHTML = newPassWithoutSpace;
+        return newPass;
+    }
+
+    function decryption(password) {
+        //alert("in decrypt");
+        var dPass = "";
+
+        const decodePass = password.split("@#$");
+        for (let i = 0; i < decodePass.length; i++) {
+            dPass = dPass + String.fromCharCode(decodePass[i]);
+        }
+        var newdPass = dPass.slice(1);
+        return newdPass;
+        //var output = document.getElementById('Doutput');
+        //output.innerHTML = dPass;
+    }
     function authenticate() {
         if (sessionStorage.getItem('Login') == null) {
             alert("Please First login!!!");
@@ -82,7 +108,7 @@
             fname.value = key.name;
             nemail.value = key.email;
             mobile.value = key.mobile;
-            password.value = key.psw;
+            password.value = decryption(key.psw);
         }
     }
 
@@ -111,7 +137,7 @@
                 key.name = fname.value;
                 key.email = nemail.value;
                 key.mobile = mobile.value;
-                key.psw = password.value;
+                key.psw = encryption(password.value);
                 let logData = {
                     email: key.email,
                     name: key.name
