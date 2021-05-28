@@ -2,14 +2,18 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 .center-card-register {
-  margin: 100px 50px 100px 400px;
+  margin: 10rem 5rem 10rem 40rem;
   width: 42%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  margin: 5px 0 22px 10px;
+  margin: 0.5rem 0 2.2rem 1rem;
 }
 
 input[type="text"],
@@ -17,8 +21,8 @@ input[type="password"],
 input[type="date"],
 select {
   width: 90%;
-  padding: 10px;
-  margin: 5px 0 22px 10px;
+  padding: 1rem;
+  margin: 0.5rem 0 2.2rem 1rem;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -27,9 +31,9 @@ select {
 .registerbtn {
   background-color: dodgerblue;
   color: white;
-  padding: 12px 16px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -41,17 +45,17 @@ select {
 }
 
 .center-card-login {
-  margin: 100px 50px 100px 400px;
+  margin: 10rem 5rem 10rem 40rem;
   width: 42%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .loginbtn {
   background-color: dodgerblue;
   color: white;
-  padding: 12px 16px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -62,8 +66,6 @@ select {
   opacity: 10;
 }
 
-
-
 /*home.html page design*/
 .homebody {
   margin: 0;
@@ -73,22 +75,29 @@ select {
 .topbar {
   width: 100%;
   background: dodgerblue;
-  height: 50px;
+  height: auto;
   display: flex;
-  border: darkslateblue 1px solid;
+  border: darkslateblue 0.1rem solid;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
 }
 
 .topbar > div {
-  margin: 5px;
-  font-size: 20px;
+  margin: 0.5rem;
+  font-size: 2rem;
+}
+
+.topchild{
+  flex:1 1;
 }
 
 /* .logout {
   background-color: darkblue;
   color: white;
-  padding: 12px 16px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 12rem 16rem;
+  border-radius: 5rem;
+  margin: 0 0 10rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -99,12 +108,12 @@ select {
   background-color: darkblue; /* Green */
   border: none;
   color: white;
-  padding: 8px 16px;
+  padding: 0.8rem 1.6rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 1.6rem;
+  margin: 0.4rem 0.2rem;
   transition-duration: 0.4s;
   cursor: pointer;
 }
@@ -114,9 +123,9 @@ select {
 } */
 
 .logout {
-  background-color: white; 
-  color: black; 
-  border: 2px solid darkblue;
+  background-color: white;
+  color: black;
+  border: 0.2rem solid darkblue;
   border-radius: 10%;
 }
 
@@ -127,55 +136,42 @@ select {
 
 .MainPart {
   width: 100%;
-  height: 530px;
+  height: auto;
+  margin: auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-
-.LeftPart{
-  width: 300px;
-  height: 530px;
-  
+.child {
+  height: 53rem;
+  flex: 1 1;
 }
 
-.MiddlePart{
-  width: 850px;
-  height: 530px;
-  
-  padding: 20px;
-}
-
-.RightPart{
-  width: 250px;
-  height: 530px;
-  
-}
-
-.footer{
+.footer {
   width: 100%;
   background: darkcyan;
-  height: 45px;
+  height: 4.5rem;
 }
 
-
 .weather-card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  padding:20px;
+  padding: 2rem;
   font-size: large;
   text-align: center;
 }
 
 .weather-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
 }
 
-.addbtn{
+.addbtn {
   background-color: dodgerblue;
   color: white;
-  padding: 10px 12px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -186,12 +182,12 @@ select {
   opacity: 10;
 }
 
-.dltbtn{
+.dltbtn {
   background-color: red;
   color: white;
-  padding: 10px 12px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -202,12 +198,12 @@ select {
   opacity: 10;
 }
 
-.combtn{
+.combtn {
   background-color: green;
   color: white;
-  padding: 10px 12px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -218,25 +214,24 @@ select {
   opacity: 10;
 }
 
-table{
-  margin:10px;
-  
+table {
+  margin: 1rem;
 }
 
-tr{
-  padding:10px;
+tr {
+  padding: 1rem;
 }
 
-td{
-  padding:10px;
+td {
+  padding: 1rem;
 }
 
-.profile{
+.profile {
   background-color: green;
   color: white;
-  padding: 10px 12px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -248,13 +243,12 @@ td{
   opacity: 10;
 }
 
-
 .updatebtn {
   background-color: dodgerblue;
   color: white;
-  padding: 12px 16px;
-  border-radius: 5px;
-  margin: 0 0 10px 0px;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.5rem;
+  margin: 0 0 1rem 0rem;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -265,10 +259,146 @@ td{
   opacity: 10;
 }
 
-
-.container_updateprofile{
-  margin: 100px 50px 100px 400px;
+.container_updateprofile {
+  margin: 10rem 5rem 10rem 40rem;
   width: 42%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
   background-color: white;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: teal;
+}
+
+li  {
+  float: left;
+  
+}
+
+
+li a {
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 14px 26px;
+  text-decoration: none;
+}
+
+
+@media (max-width: 998px) {
+  html {
+    font-size: 50%;
+  }
+  .homebody {
+    height: auto;
+  }
+  table {
+    height: auto;
+    width: auto;
+  }
+  .center-card-register {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .center-card-login {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .container_updateprofile {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  select {
+    width: auto;
+    padding: auto;
+    margin: auto;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  .topbar {
+    width: auto;
+    background: dodgerblue;
+    height: auto;
+    display: flex;
+    border: darkslateblue 0.1rem solid;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .topchild{
+    width: auto;
+  } 
+
+  .li{
+    padding: auto;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 45%;
+  }
+  .homebody {
+    height: auto;
+  }
+  table {
+    height: auto;
+    width: auto;
+  }
+  .center-card-register {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .center-card-login {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .container_updateprofile {
+    margin: auto;
+    width: auto;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  select {
+    width: auto;
+    padding: auto;
+    margin: auto;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  .topbar {
+    width: auto;
+    background: dodgerblue;
+    height: auto;
+    display: flex;
+    border: darkslateblue 0.1rem solid;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .topchild{
+    width: auto;
+  }
+
+  .li{
+    padding: auto;
+  }
 }
